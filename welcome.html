@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pharma-Dost | Welcome</title>
+  <style>
+    body {
+      margin:0; font-family:'Poppins', sans-serif;
+      height:100vh; background:url('https://img.freepik.com/premium-photo/healthcare-innovation-pharmaceutical-samples-analysis_268722-8650.jpg') no-repeat center center fixed;
+      background-size: cover; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff;
+    }
+    .welcome-card {
+      background: rgba(255,255,255,0.15); border-radius:20px; padding:50px; text-align:center;
+      backdrop-filter: blur(10px); box-shadow:0 8px 32px rgba(31,38,135,0.37); border:1px solid rgba(255,255,255,0.3);
+      width:500px;
+    }
+    .welcome-card h1 { margin-bottom:20px; text-shadow:2px 2px 5px #000; }
+    .section-btn {
+      margin-top:15px; padding:12px 20px; width:80%; border-radius:10px; border:none;
+      background: rgba(0,150,255,0.7); color:#fff; font-size:16px; cursor:pointer; transition:0.3s;
+    }
+    .section-btn:hover { background: rgba(0,200,255,0.8); }
+    .translator { margin-top:20px; }
+
+    /* AI Copilot Widget */
+    #ai-copilot-widget {
+      position: fixed; bottom:30px; right:30px; width:220px; height:60px;
+      background: rgba(0,150,255,0.8); backdrop-filter: blur(10px);
+      border-radius:30px; color:#fff; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; font-weight:bold; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:1000;
+      transition:0.3s; animation: pulse 2s infinite; text-align:center;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 rgba(0,150,255,0.7); }
+      50% { box-shadow: 0 0 15px rgba(0,150,255,0.9); }
+      100% { box-shadow: 0 0 0 rgba(0,150,255,0.7); }
+    }
+    #ai-copilot-widget:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <div class="welcome-card">
+    <h1 id="greeting">Welcome!</h1>
+    <p>Explore Pharma-Dost and accelerate pharmaceutical innovation.</p>
+    <button class="section-btn" onclick="goToSection('home.html')">Home</button>
+    <button class="section-btn" onclick="goToSection('drug_generator.html')">Drug Generator</button>
+    <button class="section-btn" onclick="goToSection('marketplace.html')">Marketplace</button>
+    <button class="section-btn" onclick="goToSection('community.html')">Community</button>
+    <button class="section-btn" onclick="goToSection('admin.html')">Admin</button>
+    <div class="translator" id="google_translate_element"></div>
+  </div>
+
+  <!-- Prominent AI Copilot Widget -->
+  <div id="ai-copilot-widget" onclick="window.open('https://chat.openai.com/', '_blank')">
+    AI Copilot - ChatGPT
+  </div>
+
+  <script>
+    function goToSection(page){ window.location.href = page; }
+
+    // Dynamic greeting + voice
+    function getGreeting() {
+      const hour = new Date().getHours();
+      let greeting = "Welcome!";
+      if(hour < 12) greeting = "Good Morning!";
+      else if(hour < 18) greeting = "Good Afternoon!";
+      else greeting = "Good Evening!";
+      document.getElementById('greeting').innerText = greeting;
+      const msg = new SpeechSynthesisUtterance(greeting + " Welcome to Pharma-Dost!");
+      window.speechSynthesis.speak(msg);
+    }
+    getGreeting();
+
+    // Google Translator
+    function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element'); }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
